@@ -1,0 +1,76 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    max-height: 100%;
+    margin: 0px auto;
+    background: #ffffff;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    max-height: auto;
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.greeting {
+    margin-top: 200px;
+
+}
+
+.form-display {
+    margin-top: 20px;
+}
+
+p{
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+    margin-left: 415px;
+
+}
+
+.button {
+    margin-top: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    box-shadow: 4px 4px 4px #000000;
+}
+
+.reset-button {
+    margin-right: 100px;
+}
+
+.submit-button {
+    position: relative;
+    left: 35px;
+}
+
+.guess-box {
+    width: 200px;
+    height: 200px;
+    margin-top: 25px;
+    margin-left: 380px;
+    border: 2px solid black;
+    color: white;
+    font-size: xx-large;
+    font-family: "Century Gothic";
+    text-align: center;
+}
+
+#red {
+    background-color: red;
+
+}
+
+#green {
+    background-color: green;
+}

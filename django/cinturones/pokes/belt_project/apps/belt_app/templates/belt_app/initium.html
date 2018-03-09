@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Login and Registration</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/belt_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Initium</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                {% csrf_token %}
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+             </form>
+        </header>
+
+
+      <div class="row">
+            <p>Welcome, {{ request.session.user_name }}</p>
+            {% if user_poke_count.count == 0 %}
+                <p>No pokes yet!</p>
+            {% else %}
+                <h5> You have been poked: {{user_poke_count.count}} time(s) </h5>
+                <h4>List of people who have poked you</h4>
+
+                {% for k, v in user_poker_list.items %}
+                    {{ k }} {{ v }}
+                    <br>
+                {%endfor%}
+
+            {% endif %}
+
+            <p> People you may want to poke: </p>
+            <table class="u-max-full-width margin-top">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Alias</th>
+                <th>Email Address</th>
+                <th>Poke History</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            {% for user in users_list %}
+            <tbody>
+              <tr>
+                <td>{{ user.name}}</td>
+                <td>{{ user.alias }}</td>
+                <td>{{ user.email }}</td>
+
+                 {% for poke in all_poker_pokes %}
+                      {% if poke == user.id %}
+                        <td>{{ user.poker_pokes.count|default:"nothing" }}</td>
+                      {%endif%}
+                 {%endfor%}
+
+                <td>
+                    <form action="/add_poke" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value={{ user.id }} name="user_id_to_poke">
+                        <input style="display: block;" type="submit" value="Poke!">
+                    </form>
+                </td>
+
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+
+        </div>
+
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

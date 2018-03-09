@@ -1,0 +1,167 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    max-height: 100%;
+    margin: 0px auto;
+    background: #ffffff;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    max-height: auto;
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+/* BUTTON/SUBMIT position on the header
+   ––––––––––––––––––––––––––––––––––––––––––––––––––---------*/
+/* START: To place submit input on the top right on the header*/
+.form-attributes {
+    display: flex;
+    justify-content: flex-end;
+    width: 300px;
+    margin-right: 0px;
+    margin-left: 410px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/* END: To place submit input on the top right on the header*/
+
+
+/* HEADER
+   –––––––––––––––––––––––––––––––––––––––––––––––––------------*/
+/* START: To give the header a nice width and light gray border */
+.header {
+    text-align: center;
+    background-color: ##44619D;
+    color: white;
+    margin-bottom: 45px;
+}
+
+.header-width {
+    height: 90px;
+}
+
+.border-bottom {
+    border-bottom: solid;
+    border-bottom-color: #F6F6F6;
+}
+/* END: To give the header a nice width and light gray border */
+
+
+/* FOOTER
+   –––––––––––––––––––––––––––––––––––––––––––––––––------------*/
+.footer {
+    margin-top: 55px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: smaller;
+    font-style: italic;
+    border-top: solid;
+    border-top-color: #F6F6F6;
+    text-align: center;
+}
+
+/* HEADINGS
+   –––––––––––––––––––––––––––––––––––––––––––––––––------------*/
+h1 {
+    border-bottom: solid;
+    border-bottom-color: #F6F6F6;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+h3 {
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+label, input {
+    display: block;
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+.red {
+    color: #E65372;
+}
+
+.blue {
+    color: #44619D;
+}
+
+.metallic {
+    color: #0B3C49;
+}
+
+/* TABLES
+   –––––––––––––––––––––––––––––––––––––––––––––––––------------*/
+/* START: To give a table a  nice gray gradient, darker for the header */
+table tr:first-child th {
+    background: #CCCCCC;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 30%, #f6f6f6 30%, #e5e5e5 100%);
+    padding: 8px 10px;
+    color: #000;
+    border-top: 1px solid #cecece;
+    border-bottom: 1px solid #E6E6E6;
+ }
+
+table tr td {
+    background-color: #F2F2F2;
+    padding: 5px 10px;
+}
+
+/* END: To give a table a  nice gray gradient, darker for the header */
+
+
+/* Aligns the text on the table rows */
+td {
+    text-align: right;
+}
+
+/* Classes to use with Django messaging tags
+   –––––––––––––––––––––––––––––––––––––––––––––––––------------*/
+/* For more on messaging tags visit 
+   https://docs.djangoproject.com/en/1.11/ref/contrib/messages/
+*/
+.error {
+    color: red;
+}
+
+.success .info {
+    color: green;
+}
+
+.warning {
+    color: yellow;
+}
+
+/* For the general_content.html
+   Aligns h1 - flash message - button on a horizontal line
+   ---------------------------------------------------------------*/
+
+.signout-button-margins {
+    position: relative;
+    left: 100px;
+}
+
+.msg-position {
+    position: relative;
+    right: 250px;
+    top: 60px;
+}

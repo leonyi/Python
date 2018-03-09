@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register or Login</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1 class="red header"> Login or Register </h1>
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            {%- for error in errors %}
+            <p id="red" align="center"> {{ error }}</p>
+            {% endfor -%}
+        {% endif %}
+        {% endwith %}
+
+        {% with success = get_flashed_messages(category_filter=["success"]) %}
+        {% if success %}
+            {%- for msg in success %}
+            <p id="green" align="center"> {{ msg }}</p>
+            {% endfor -%}
+        {% endif %}
+        {% endwith %}
+
+        <div class="register_login_section">
+            <form action="/login" method="post">
+                <h2>Login</h2>
+                <label for="email_address">Email Address:<input type="email" name="email_address"></label>
+                <label for="user_password">Password:<input type="password" name="user_password"></label>
+                <input class="button login-button" type="submit" value="Login">
+            </form>
+
+            <form action="/register", method="post">
+                <h2>Register</h2>
+                <label for="first_name">First Name:<input type="text" name="user_name"></label>
+                <label for="last_name">Last Name:<input type="text" name="last_name"></label>
+                <label for="email_address">Email:<input type="email" name="email_address"></label>
+                <label for="user_password">Password:<input type="password" name="user_password" required></label>
+                <label for="user_password_conf">Confirm Password:<input type="password" name="user_password_conf" required></label>
+                <input class="button submit-button" type="submit" value="Register">
+            </form>
+        </div>
+
+        <p class="footer">Forgot your password? Click <a class="red" href="#">here.</a></p>
+    </div>
+</body>
+</html>

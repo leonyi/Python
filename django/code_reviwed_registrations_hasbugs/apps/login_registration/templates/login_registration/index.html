@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Login and Registration</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/login_registration/css/normalize.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <h1 class="header"> Initium </h1>
+
+        <div class="register_login_section">
+            <form action="/login" method="post">
+              {% csrf_token %}
+                <h2 class="blue">Login</h2>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "login_user_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="email_address">Email Address:<input type="email" name="email_address"></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "login_email_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="user_password">Password:<input type="password" name="user_password"></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if 'login_password_validation' in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <input class="button login-button" type="submit" value="Login">
+            </form>
+
+            <form action="/register", method="post">
+              {% csrf_token %}
+                <h2 class="blue">Register</h2>
+                <label for="first_name">First Name:<input type="text" name="first_name"></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "registration_username_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="last_name">Last Name:<input type="text" name="last_name"></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "registration_username_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="email_address">Email:<input type="email" name="email_address"></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "registration_email_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="user_password">Password:<input type="password" name="user_password" required></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "registration_password_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <label for="user_password_conf">Confirm Password:<input type="password" name="user_password_conf" required></label>
+                {% if messages %}
+                  {% for msg in messages %}
+                      {% if "registration_password_conf_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+                {% endif %}
+              <input class="submit-button" type="submit" value="Register">
+            </form>
+        </div>
+
+        <footer class="footer">
+            <p>Forgot your password? Click <a class="blue" href="#">here.</a></p>
+        </footer>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Details</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/quote_reviews/css/normalize.css">
+  <link rel="stylesheet" href="../../static/quote_reviews/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/quote_reviews/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Initium</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+
+                <div style="display: flex; justify-content: space-between">
+                    <a href="/dashboard">Dashboard</a>
+                    <span> | <input  class="signout-button-margins" type="submit" value="Sign Out"> </span>
+                </div>
+             </form>
+
+        </header>
+
+      <div class="show_user_section">
+          <p> Posts by {{ user_name }} </p>
+          <p> Count: {{ quote_count }}</p>
+          {% for q in user_quotes %}
+            <ul>
+                <li style="list-style: none;"> <q class="red">{{ q.quote_author }}</q>: {{ q.quote_content }}</li>
+            </ul>
+          {% endfor %}
+      </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

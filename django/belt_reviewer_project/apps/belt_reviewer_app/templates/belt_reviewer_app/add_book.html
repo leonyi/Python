@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Add a Book Review</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <p style="margin-left: 10px">Logged in as {{ request.session.user_name }}</p>
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+                <div style="display: flex; justify-content: space-between">
+                    <a href="/dashboard">Dashboard</a>
+                    <span> | <input class="signout-button-margins" type="submit" value="Sign Out">
+                    </span>
+                </div>
+             </form>
+
+        </header>
+
+    <div class="row">
+
+          <div class="show_user_section">
+              <h3>Add a New Book Title and a Review</h3>
+              <form action="/books/add" method="post">
+                  {% csrf_token %}
+                  <p style="margin-top: 25px; margin-bottom: 5px;font-weight: bold;">Book Title:</p> <input type="text" name="book_title">
+                  <p style="margin-top: 25px; margin-bottom: 5px;font-weight: bold;">Author:</p>
+
+                  <select name="author_value">
+                      <option selected="selected" disabled> Choose from the list</option>
+                          {% for author in authors_list %}
+                          <option value="{{ author.name }}"> {{ author.name }}</option>
+                          {% endfor %}
+                  </select>
+
+                  <p style="font-weight: bold;"> Or add a new author</p><input type="text" name="author_value">
+                  <p style="font-weight: bold;  margin-bottom: 5px;  "> Review:</p><textarea name="review_content" class="fit-wrapper" placeholder="Post a review." ></textarea>
+
+                  <div>
+                      <p style="font-weight: bold; display: inline-block;"> Rating: </p>
+                      <select name="rating_value">
+                          <option selected="selected" disabled>Choose your rating</option>
+                          {% for rating in book_ratings%}
+                          <option value={{ rating }}>{{ rating }}</option>
+                          {% endfor %}
+                      </select>
+                      <p style="font-weight: bold; display: inline-block;">stars</p>
+                  </div>
+
+                  <input style="display: block;" type="submit" value="Add Book and Review">
+
+              </form>
+
+          </div>
+    </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

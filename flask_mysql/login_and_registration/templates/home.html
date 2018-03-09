@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Login and Registration</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="../static/js/script.js"></script>
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href='../static/css/normalize.css'>
+    <link rel="stylesheet" type="text/css" href='../static/css/skeleton.css'>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+
+</head>
+<body>
+    <div class="content-wrapper">
+
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="red inline-block" id="h1-margins">Login Page</h1>
+            <form class="form-attributes inline-block" action="/logout" method="post">
+
+                {% with messages = get_flashed_messages(category_filter=['msg']) %}
+                {% if messages %}
+                    {%-for msg in messages %}
+                    <p class="inline-block msg-position" id="msg-size">{{ msg }}</p>
+                    {% endfor -%}
+                {% endif %}
+                {% endwith %}
+
+                 <input class="button-margins" type="submit" value="Sign Out">
+             </form>
+            </div>
+        </header>
+
+    </div>
+</body>
+</html>

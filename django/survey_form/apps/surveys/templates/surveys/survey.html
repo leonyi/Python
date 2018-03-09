@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Survey Form</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    {% load static %}
+    <link rel="stylesheet" href="../../static/surveys/css/normalize.css">
+    <link rel="stylesheet" href="../../static/surveys/css/skeleton.css">
+    <link rel="stylesheet" href="../../static/surveys/css/styles.css">
+</head>
+<body>
+    <div class="content-wrapper">
+
+        <div class="form-wrapper">
+            <h3>Submitted Info</h3>
+            <p>Name: {{ request.session.user_name }}</p>
+            <p>Dojo Location: {{ request.session.geo_location }}</p>
+            <p>Favorite Language: {{ request.session.prog_lang }}</p>
+            <p>Comment: {{ request.session.comment }}</p>
+
+        </div>
+
+        <form action="/" method="get">
+            <input type="submit" value="Go Back"/>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Login and Registration</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/login_registration/css/normalize.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Initium</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+
+                {% if messages %}
+                    {% for msg in messages %}
+                        {% if "valid_user" in msg.tags %}
+                            <p class="inline-block msg-position" id="msg-size">{{ msg }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+             </form>
+
+        </header>
+
+        <h5 class="success margin-top"> Welcome! You successfully registered (or logged in)!</h5>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

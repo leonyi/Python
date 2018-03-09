@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style_sheet.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}"></script>
+    <img src="{{ url_for('static', filename='img/my_img.png') }}">
+
+</head>
+<body>
+    <h1>Ninjas!</h1>
+    <p>The Teenage Mutant Ninja Turtles are four fictional teenaged anthropomorphic turtles named after Renaissance Italian artists. They were trained by their anthropomorphic rat sensei in the art of ninjutsu. </p>
+    <p>Check out more info on <a href="https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles" >Wikipedia</a></p>
+</body>
+</html>

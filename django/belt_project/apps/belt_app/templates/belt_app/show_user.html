@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Details</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/belt_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">BeltApp</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+
+                <div style="display: flex; justify-content: space-between">
+                    <a href="/dashboard">Dashboard</a>
+                    <span> | <input  class="signout-button-margins" type="submit" value="Sign Out"> </span>
+                </div>
+             </form>
+
+        </header>
+    <div class="row">
+          <div class="show_user_section">
+              <p style="margin-top: 25px; margin-bottom: 5px"> Welcome {{ user_name }} </p>
+              <p style="margin-bottom: 5px "> Birthdate: {{ user_birthday }}</p>
+              <p> Email: {{ user_email }}</p>
+          </div>
+    </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

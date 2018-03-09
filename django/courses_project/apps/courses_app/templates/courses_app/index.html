@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Courses</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/courses_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/courses_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/courses_app/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Courses</h1>
+
+            <form class="form-attributes inline-block" action="/logout" method="post">
+                 {% csrf_token %}
+
+                <p class="inline-block msg-position" id="msg-size">{{ msg }}</p>
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+
+             </form>
+
+        </header>
+
+      <div class="row">
+          {% if messages %}
+            {% for msg in messages %}
+                {% if "course_deletion" in msg.tags %}
+                    <p style="color: green"> {{ msg }}</p>
+                {% endif %}
+            {% endfor %}
+          {% endif %}
+            <h3> Add a New Course </h3>
+              <form action="/add_course" method="post">
+                  {% csrf_token %}
+
+                  <span>Name:<input type="text" name="course_name"></label></span>
+                  {% if messages %}
+                      {% for msg in messages %}
+                          {% if "course_name_validation" in msg.tags %}
+                            <p class="error"> {{ msg }}</p>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+
+                  <p>Description:</p><textarea name="course_description" class="fit-wrapper" placeholder="Your description of the course." ></textarea>
+                   {% if messages %}
+                      {% for msg in messages %}
+                          {% if "course_desc_validation" in msg.tags %}
+                            <p class="error"> {{ msg }}</p>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+                  <input style="display: block;" type="submit" value="Add">
+            </form>
+
+            <h3> Courses </h3>
+            <table class="u-max-full-width">
+            <thead>
+              <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            {% for course in courses_list %}
+            <tbody>
+              <tr>
+                <td style="text-align: left">{{ course.name}} </td>
+                <td style="text-align: left">{{ course.description }}</td>
+                <td style="text-align: left">{{ course.crated_at | date:"M d, Y H:i" }}</td>
+                <td style="text-align: left">
+                  <a href="/courses/{{ course.id }}/remove">remove</a>
+                </td>
+
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+
+      </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

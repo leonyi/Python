@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Friends</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="greeting">
+            <h2>Welcome to the Great Number Game!</h2>
+            <p>I am thinking of a number between 1 and 100</p>
+            <p>Take a guess!</p>
+        </div>
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            <div class="guess-box" id="red">
+                {%- for msg in errors %}
+                <p>{{ msg }}</p>
+                {% endfor -%}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        {% with success = get_flashed_messages(category_filter=["success"]) %}
+        {% if success %}
+         <div class="guess-box" id="green">
+                {%- for msg in success %}
+                <p>{{ msg }}</p>
+                {% endfor -%}
+                <form>
+                    <input type="submit" name="reset" value="Play Again!" class="button">
+                </form>
+         </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/guess" method="post" class="form-display">
+            <input type="text" name="guess_num">
+            <input id="add_guess_box" type='submit' value="Submit" class="button submit-button">
+        </form>
+
+    </div>
+</body>
+</html>

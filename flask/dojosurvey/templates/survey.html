@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dojo Survey</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/style_sheet.css'
+    ">
+</head>
+<body>
+    <div class="content-wrapper">
+
+        <div class="form-wrapper">
+            <h3>Submitted Info</h3>
+            <p>Name: {{ survey.name }}</p>
+            <p>Dojo Location: {{ survey.geo_location }}</p>
+            <p>Favorite Language: {{ survey.prog_language }}</p>
+            <p>Comment: {{ survey.commentinput }}</p>
+
+        </div>
+
+        <form action="http://localhost:5000/">
+            <input type="submit" value="Go Back" class="button" />
+        </form>
+    </div>
+    <script type="text/javascript" src="../static/js/script.js"></script>
+</body>
+</html>

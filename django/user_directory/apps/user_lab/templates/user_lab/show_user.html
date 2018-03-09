@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Details</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/user_lab/css/normalize.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+      <header class="border-bottom header-width">
+        <h3>User {{ user.id }}</h3>
+      </header>
+
+      <div class="show_user_section">
+        <p class="p_show_user">Full Name: {{ user.first_name}} {{ user.last_name }}</p>
+        <p class="p_show_user">Email: {{ user.email }} </p>
+        <p class="p_show_user">Creation Date: {{ user.created_at |date:"M d, Y" }} </p>
+        <a href="/users/{{ user.id }}/edit">Edit</a> | <a href="/users/{{ user.id }}/delete">Delete</a>|<a href="/users">Back to Users</a>
+      </div>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

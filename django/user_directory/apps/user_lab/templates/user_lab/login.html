@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Directory</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/user_lab/css/normalize.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+      <h1 class="header"> User Directory </h1>
+      <div class="register_login_section flex-center">
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <h2 class="metallic">Login</h2>
+                <label for="email_address">Email Address:</label><input type="email" name="email_address">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if 'email_validation' in message.tags %}
+                            <p class="red">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <label for="user_password">Password:</label><input type="password" name="user_password">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if 'password_validation' in message.tags %}
+                            <p class="red">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <input type="submit" value="Login">
+            </form>
+      </div>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

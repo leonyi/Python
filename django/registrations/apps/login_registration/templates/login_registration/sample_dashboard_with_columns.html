@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Login and Registration</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/login_registration/css/normalize.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Initium</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                {% csrf_token %}
+
+                <p class="inline-block msg-position" id="msg-size">Hello, {{ request.session.user_name }}</p>
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+
+            </form>
+        </header>
+
+
+      <div class="row">
+        <div class="one-half column" style="margin-top: 5%">
+            <h2>Column 1: </h2>
+            <form action="/add_fave" method="post">
+              {% csrf_token %}
+
+                <h5 class="success margin-top">{{ message }}</h5>
+
+                <d style="display: flex; justify-content: space-between">
+                    <span style="font-style: italic; font-size:x-small">Posted by <a href="/users/{{ request.session.id }}">{{ request.session.user_name }}</a></span>
+                    <input style="margin-left: 100px" type="submit" value="Sample Button">
+                </d>
+            </form>
+
+            <p> A Table</p>
+            <table class="u-max-full-width margin-top">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Creation Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            {% for user in users_list %}
+            <tbody>
+              <tr>
+                <td> <a href="/users/{{ user.id }}">{{ user.id }}</a></td>
+                <td>{{ user.first_name}} {{user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at |date:"M d, Y" }}</td>
+                <td>
+                  <a href="/users/{{ user.id }}">Show</a>
+                  <a href="/users/{{ user.id }}/edit">Edit</a>
+                  <a href="/users/{{ user.id }}/delete">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+          <a href="/users/new">Add a new user</a>
+
+        </div>
+
+        <div class="one-half column" style="margin-top: 5%"">
+            <h2>Column 2: </h2>
+          {% for q in all_faves %}
+          <form action="/remove_fave" method="post">
+              {% csrf_token %}
+              <input type="hidden" value={{ q.id }} name="liked_id_to_rm">
+              <p style="margin-bottom: 5px">{{ q.quote_author }}: </p>
+              <p>{{ q.quote_content}}</p>
+              <d style="display: flex; justify-content: space-between">
+                <span style="font-style: italic; font-size:x-small">Posted by <a href="/users/{{ q.quoted_by.id }}">{{ q.quoted_by.name }}</a></span>
+                <input style="margin-left: 100px" type="submit" value="Remove From My List">
+              </d>
+            {% endfor %}
+          </form>
+
+          <h2>Space for a form:</h2>
+          <form action="/add_quote" method="post">
+              {% csrf_token %}
+
+              {% if messages %}
+                  {% for msg in messages %}
+                      {% if "quote_validation" in msg.tags %}
+                        <p class="error"> {{ msg }}</p>
+                      {% endif %}
+                  {% endfor %}
+              {% endif %}
+              <span>Comments by:<input type="text" name="quote_author"></label></span>
+              <textarea name="quote_content" class="fit-wrapper" placeholder="Post a comment." ></textarea>
+              <input style="display: block;" type="submit" value="Submit">
+
+          </form>
+
+        </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

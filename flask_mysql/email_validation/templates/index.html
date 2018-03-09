@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Validation</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+</head>
+<body>
+    <div class="content-wrapper">
+        <form action="/add_email" method="post">
+            <!--Invalid email entries!-->
+            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+            {% if errors %}
+            <div class="msg-box" id="red">
+                {%- for error in errors %}
+                <p>{{ error }}</p>
+                {% endfor -%}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <label id="email-input" for="email_address">Email Address:<input type="email" name="email_address"></label>
+            <input class="button submit-button" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

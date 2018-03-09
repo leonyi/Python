@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Validation</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div>
+            <div class="msg-box" id="green">
+                <p> {{ flash_msg }} </p>
+            </div>
+
+            <div>
+                <h2>Email Addresses Entered:</h2>
+                {% if emails %}
+                <table>
+                    {% for entry in emails %}
+                    <tr>
+                        <td> {{ entry['email'] }}</td>
+                        <td> {{ entry['created_at'].strftime('%Y/%m/%d %I:%M %p') }}</td>
+                        <td>
+                            <form class="delete-form" action="/delete_entry" method="post">
+                                <input type="hidden" name="hidden" value="{{ entry['id'] }}" />
+                                <input id="delete-button" class="button" type="submit" value="Delete" />
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

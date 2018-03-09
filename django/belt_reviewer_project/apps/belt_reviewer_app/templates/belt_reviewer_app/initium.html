@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Books Home</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <p>Hello, {{ request.session.user_name }}</p>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                {% csrf_token %}
+                <a href="/books/add_book_review">Add Book and Review</a>
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+            </form>
+
+        </header>
+
+        <div class="row">
+
+              <div class="one-half column" style="margin-top: 5%">
+                    <h2> Recent Book Reviews: </h2>
+                    <h5 class="success margin-top">{{ message }}</h5>
+
+                    {% for review in latest_three_reviews_list %}
+                    <ul>
+                        <li style="list-style: none;">
+                            <a href="/books/{{ review.book_title_id }}">{{ review.book_title }}</a>
+                            <div style="font-style: italic; font-size: small; margin-left: 10px">
+                                <p> Rating: {{ review.book_rating }}</p>
+                                <span>
+                                    <a href="/users/{{ review.reviewer_id }}">{{ review.reviewer }}</a>
+                                    says: {{ review.review_content }}
+                                </span>
+                                <p style="margin-top: 5px;"> Posted on {{ review.review_date_posted|date:"F d, Y" }}</p>
+                            </div>
+
+                        </li>
+                    </ul>
+                    {% endfor %}
+
+              </div>
+
+              <div class="one-half column" style="margin-top: 5%">
+                  <h2>Other Books With Reviews: </h2>
+                  <div style="border: 2px solid black;">
+
+                  {% for book in all_book_reviews %}
+                      <a href="/books/{{ book.book_title_id }}" style="display: block;"> {{ book.book_title }}</a>
+                  {% endfor %}
+
+                  </div>
+
+              </div>
+
+        </div>
+
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

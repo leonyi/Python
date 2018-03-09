@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dojo Survey</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/style_sheet.css'
+    ">
+</head>
+<body>
+   <div class="content-wrapper">
+        <div class="form-wrapper">
+            <form action="/process" method="post">
+
+                <!--Flash Errors-->
+                {% with errors = get_flashed_messages() %}
+                    {% if errors %}
+                        {% for err in errors %}
+                            <p id="error">{{ err }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                Name: <input type="text" name="name" class="input-block">
+                    <div class="selection-block">
+                        <p>Dojo Location:</p>
+                        <select name="geo_location">
+                            <option value="San Jose">San Jose</option>
+                            <option value="Seattle">Seattle</option>
+                            <option value="Bellevue">Bellevue</option>
+                            <option value="Dallas">Dallas</option>
+                        </select>
+                    </div>
+                    <div class="selection-block">
+                        <p>Favorite Language:</p>
+                        <select name="prog_language">
+                            <option value="Python">Python</option>
+                            <option value="Go">GoLang</option>
+                            <option value="Ruby">Ruby</option>
+                            <option value="Java">Java</option>
+                        </select>
+                    </div>
+                    <div class="description">
+                        <label class="comment">Comment (optional)</label>
+                        <textarea id="comment" name="commentinput" rows="10" cols="50" placeholder="Comment"></textarea>
+                    </div>
+
+                <input type='submit' value="Submit" class="button">
+
+            </form>
+
+        </div>
+   </div>
+</body>
+</html>

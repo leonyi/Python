@@ -1,0 +1,79 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    max-height: 100%;
+    margin: 0px auto;
+    background: #ffffff;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    max-height: auto;
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.gold-count {
+    width: 120px;
+    heigh: 25px;
+    margin-left: 5px;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+#gold-text {
+    margin-top: 25px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.game-box {
+    border: 2px solid black;
+    text-align: center;
+    width: 169px;
+    height: 140px;
+    margin-top: 15px;
+}
+
+.gold-button {
+    margin-top: 25px;
+    padding: 5px;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px #1a1a1a;
+    height: 25px;
+    text-align: center;
+    font-size: small;
+
+}
+
+.games-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    padding: 10px;
+}
+
+div.scroll {
+    overflow: scroll;
+    border: 2px solid black;
+}
+
+#activity-text{
+    margin-top: 20px;
+}
+
+.earned {
+    color: green;
+}
+
+.lost {
+    color: red;
+}

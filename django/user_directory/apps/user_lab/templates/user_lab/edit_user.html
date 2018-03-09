@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Edit User Details</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/user_lab/css/normalize.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+      <header class="border-bottom header-width">
+          <h3>Edit User {{ user.id }} - {{ user.first_name}} {{ user.last_name}}</h3>
+      </header>
+
+      <div class="show_user_section">
+        <form action="/users/{{ user.id }}/update" method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'internal_error' in message.tags %}
+                        <p class="red">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            <label for="first_name">First name:</label><input type="text" name="first_name" placeholder="{{ user.first_name }}">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'name_validation' in message.tags %}
+                        <p class="red">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            <label for="last_name">Last name:</label><input type="text" name="last_name" placeholder="{{ user.last_name }}">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'name_validation' in message.tags %}
+                        <p class="red">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            <label for="email">Email:</label><input type="email" name="email" placeholder="{{ user.email }}">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'email_validation' in message.tags %}
+                        <p class="red">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+            {% endif %}
+            <input type="hidden" name="hidden" value="{{ user.id }}" />
+            <input type="submit" class="button-primary" value="Update">
+        </form>
+
+        <a href="/users/{{ user.id }}">Show</a> | <a href="/users">Go Back</a>
+      </div>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

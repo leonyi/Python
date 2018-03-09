@@ -1,0 +1,10 @@
+print "Creating the Ninjas, who belong to the Seattle Dojo"
+Ninja.objects.create(first_name="Janet", last_name="Wagner", dojo=dojo2)
+Ninja.objects.create(first_name="Cleveland", last_name="Robins", dojo=dojo2)
+Ninja.objects.create(first_name="Jackson", last_name="Jackson", dojo=dojo2)
+
+print "Creating the Ninjas, who belong to the New York Dojo"
+Ninja.objects.create(first_name="James", last_name="Smith", dojo=dojo3)
+Ninja.objects.create(first_name="Steve", last_name="Hernandez", dojo=dojo3)
+Ninja.objects.create(first_name="Carlos", last_name="Menlo", dojo=dojo3)
+Ninja.objects.create(first_name="Jackson", last_name="Jackson", dojo=dojo2)

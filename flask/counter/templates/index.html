@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Counter</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1>Counter: {{ session['counter'] }}</h1>
+        <div>
+            <form action="/add_two" method="post" class="forms">
+                <input type='submit' value="Add Two" class="button">
+            </form>
+
+            <form action="/reset" method="post" class="forms">
+                <input type='submit' value="Reset" class="button">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

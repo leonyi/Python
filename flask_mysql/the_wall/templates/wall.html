@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>The Wall</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="../static/js/script.js"></script>
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href='../static/css/normalize.css'>
+    <link rel="stylesheet" type="text/css" href='../static/css/skeleton.css'>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+
+</head>
+<body>
+    <div class="content-wrapper">
+
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block" id="h1-margins">TheWall</h1>
+            <form class="form-attributes inline-block" action="/logout" method="post">
+
+                {% with messages = get_flashed_messages(category_filter=['msg']) %}
+                {% if messages %}
+                    {%-for msg in messages %}
+                    <p class="inline-block msg-position" id="msg-size">{{ msg }}</p>
+                    {% endfor -%}
+                {% endif %}
+                {% endwith %}
+
+                 <input class="signout-button-margins" type="submit" value="Sign Out">
+             </form>
+        </header>
+        {% with messages = get_flashed_messages(category_filter=['success']) %}
+        {% if messages %}
+            {%-for msg in messages %}
+            <p id="green" align="center">{{ msg }}</p>
+            {% endfor -%}
+        {% endif %}
+        {% endwith %}
+        <form class="align-center fit-wrapper textarea-form" action="/post" method="post">
+            <label for="post_message">Post a message</label>
+            <textarea name="post_message" class="fit-wrapper" placeholder="Post a message." id="post_message" ></textarea>
+            <input class="comment-button-margins" type="submit" value="Post a message">
+        </form>
+
+        <div class="message-board">
+            {% if data %}
+                {%- for entry in data %}
+
+                    <h5> {{ entry['msg_author'] }} - {{ entry['msg_date'].strftime('%b %d %Y, %H:%M %p')}}</h5>
+                    <p> {{ entry['msg_content'] }} </p>
+
+                    {% if entry['msg_comments'] %}
+                        {%- for comment in entry['msg_comments'] %}
+
+                        <h6> {{ comment['comment_author'] }} - {{ comment['comment_date'].strftime('%b %d %Y, %H:%M %p')}}</h6>
+                        <p> {{ comment['comment_content'] }} </p>
+
+                        {% endfor -%}
+                    {% endif %}
+                    <form class="align-center fit-wrapper textarea-form" action="/post/{{ entry['msg_id'] }}/comment" method="post">
+                        <label for="post_comment">Post a comment</label>
+                        <textarea name="post_comment" class="fit-wrapper" placeholder="Post a comment." id="post_comment" ></textarea>
+                        <input class="comment-button-margins" type="submit" value="Post a comment">
+                    </form>
+
+                {% endfor -%}
+            {% endif %}
+        </div>
+
+
+    </div>
+</body>
+</html>

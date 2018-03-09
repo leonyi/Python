@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Directory</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/user_lab/css/normalize.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/user_lab/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+          <header class="border-bottom header-width flex-space-between">
+            <h3>Users</h3>
+
+            {% if messages %}
+              {% for message in messages %}
+                {% if 'valid_admin' in message.tags %}
+                    <p class="success inline-block" id="msg-size" >{{ message }}</p>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            <form action="/signout" method="post" class="form-attributes inline-block">
+                {% csrf_token %}
+                 <input class="signout-button-margins" type="submit" value="Sign Out">
+            </form>
+          </header>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if 'user_deletion' in message.tags %}
+                        <p class="success">{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+          <table class="u-max-full-width margin-top">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Creation Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            {% for user in users_list %}
+            <tbody>
+              <tr>
+                <td> <a href="/users/{{ user.id }}">{{ user.id }}</a></td>
+                <td>{{ user.first_name}} {{user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at |date:"M d, Y" }}</td>
+                <td>
+                  <a href="/users/{{ user.id }}">Show</a>
+                  <a href="/users/{{ user.id }}/edit">Edit</a>
+                  <a href="/users/{{ user.id }}/delete">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+          <a href="/users/new">Add a new user</a>
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

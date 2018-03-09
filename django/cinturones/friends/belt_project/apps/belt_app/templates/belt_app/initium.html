@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Belt App Initium</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/belt_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_app/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Initium</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                {% csrf_token %}
+
+                <p class="inline-block msg-position" id="msg-size">Hello, {{ request.session.user_name }}</p>
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+
+             </form>
+
+        </header>
+
+
+      <div class="row">
+        <div style="margin-top: 5%">
+            <h2> Here is a list of your friends: </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Alias</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for friend in all_friends %}
+                    <tbody>
+                        <tr>
+                            <td>{{ friend.name }}</td>
+                            <td>
+                                <a href="/users/{{ friend.id }}">View Profile</a>
+                                <a href="/users/{{ friend.id }}/delete">Delete</a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+        </div>
+
+        <div style="margin-top: 5%">
+            <h2> Other Users not on your friends list: </h2>
+                <table class="u-max-full-width margin-top">
+                    <thead>
+                        <tr>
+                            <th>Alias</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    {% for user in all_non_friends %}
+                    <tbody>
+                        <tr>
+                            <td>
+                            <a href="/users/{{ user.id }}">{{ user.alias }}</a>
+                            </td>
+                            <td style="display: flex; justify-content: space-evenly">
+                                <form action="/add_as_friend" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" value={{ user.id }} name="added_friend_id">
+                                    <input style="margin-top: 35px; margin-right: 10px;" type="submit" value="Add as Friend">
+                                </form>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+
+          </form>
+
+
+        </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Login and Registration</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load static %}
+  <link rel="stylesheet" href="../../static/login_registration/css/normalize.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/login_registration/css/styles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Bookshelf</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                {% csrf_token %}
+
+                <p class="inline-block msg-position" id="msg-size">Hello, {{ request.session.user_name }}</p>
+                <input class="signout-button-margins" type="submit" value="Sign Out">
+
+            </form>
+        </header>
+
+        <div class="row">
+
+              <div class="one-half column" style="margin-top: 5%">
+                    <h2>Column 1: </h2>
+                    <h5 class="success margin-top">{{ message }}</h5>
+
+                    <p> A Table</p>
+                    <table class="u-max-full-width margin-top">
+
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Creation Date</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        {% for user in users_list %}
+
+                        <tbody>
+                          <tr>
+                            <td> <a href="/users/{{ user.id }}">{{ user.id }}</a></td>
+                            <td>{{ user.first_name}} {{user.last_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.created_at |date:"M d, Y" }}</td>
+                            <td>
+                              <a href="/users/{{ user.id }}">Show</a>
+                              <a href="/users/{{ user.id }}/edit">Edit</a>
+                              <a href="/users/{{ user.id }}/delete">Delete</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                        {% endfor %}
+
+                    </table>
+              </div>
+
+              <div class="one-half column" style="margin-top: 5%"">
+                    <h2>Column 2: </h2>
+
+        </div>
+
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

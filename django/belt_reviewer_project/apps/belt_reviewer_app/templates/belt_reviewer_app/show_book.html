@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Add a Book Review</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/belt_reviewer_app/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <p>Logged in as {{ request.session.user_name }}</p>
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+
+                <div style="display: flex; justify-content: space-between">
+                    <a href="/dashboard">Dashboard</a>
+                    <span> | <input  class="signout-button-margins" type="submit" value="Sign Out"> </span>
+                </div>
+             </form>
+
+        </header>
+    <div class="row">
+           <div class="one-half column" style="margin-top: 5%">
+              <p style="margin-top: 25px; margin-bottom: 5px; font-weight: bold"> {{ book_name }} </p>
+              <h4>{{ book_title }}</h4>
+              <p> Author: {{ book_author }}</p>
+              <h4>Reviews:</h4>
+              {% for r in all_reviews %}
+                <ul>
+                    <li style="list-style: none; border-top: 1px solid black;">
+                        <div style="font-style: italic; font-size: small; margin-left: 10px">
+                            <p> Rating: {{ book_rating }} </p>
+                            <span>
+                                <a href="/users/{{ r.reviewer_id }}">{{ r.reviewer }}</a>
+                                says: {{ r.review_content }}
+                            </span>
+                            <p style="margin-top: 5px; display: inline-block"> Posted on {{ r.review_date_posted|date:"F d, Y" }}</p>
+
+                            {% if request.session.id == r.reviewer_id %}
+                                <a style="display: inline-block;" href="/delete/{{ r.review_id }}">Delete this Review</a>
+                            {% endif %}
+
+                        </div>
+
+                    </li>
+                </ul>
+              {% endfor %}
+          </div>
+
+           <div class="one-half column" style="margin-top: 5%">
+                  <h2>Add a Review: </h2>
+                      <form action="/books/add" method="post" style="border: 2px solid black;">
+                      {% csrf_token %}
+
+                          <div style="margin-left: 5px;">
+                              <p style="font-weight: bold;  margin-bottom: 5px;  "> Review:</p><textarea name="review_content" class="fit-wrapper" placeholder="Post a review." ></textarea>
+                              <div>
+                                  <p style="font-weight: bold; display: inline-block;"> Rating: </p>
+                                  <select name="rating_value">
+                                      <option selected="selected" disabled>Choose your rating</option>
+                                      {% for rating in book_ratings%}
+                                      <option value={{ rating }}>{{ rating }}</option>
+                                      {% endfor %}
+                                  </select>
+                                  <p style="font-weight: bold; display: inline-block;">stars</p>
+                              </div>
+                              <input type="hidden" name="book_title" value="{{ book_title }}">
+                              <input type="hidden" name="author_value" value="{{ book_author }}">
+                              <input style="display: block;" type="submit" value="Submit Review">
+                          </div>
+
+                      </form>
+
+           </div>
+
+    </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

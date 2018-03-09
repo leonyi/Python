@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>User Details</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ {% load static %}
+  <link rel="stylesheet" href="../../static/courses_app/css/normalize.css">
+  <link rel="stylesheet" href="../../static/courses_app/css/skeleton.css">
+  <link rel="stylesheet" href="../../static/courses_app/css/styles.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="content-wrapper">
+        <header class="border-bottom header-width flex-space-between">
+            <h1 class="blue inline-block">Courses</h1>
+
+            <form class="form-attributes inline-block" action="/signout" method="post">
+                 {% csrf_token %}
+
+                <div style="display: flex; justify-content: space-between">
+                    <a href="/dashboard">Dashboard</a>
+                    <span> | <input  class="signout-button-margins" type="submit" value="Sign Out"> </span>
+                </div>
+             </form>
+
+        </header>
+
+      <div class="show_user_section">
+          <h4>Are you sure you wan to delete the following course?</h4>
+          <p>Name: {{ course.name }} </p>
+          <p> Description: {{ course.description }}</p>
+
+          <div style="display: flex; justify-content: space-evenly">
+              <form action="/dashboard">
+                  {% csrf_token %}
+                  <input type="submit" name="no-button" value="No">
+              </form>
+
+              <form action="/courses/{{ course.id }}/delete" method="post">
+                  {% csrf_token %}
+                  <input style="background-color: red; color:white; "type="submit" name="yes-button" value="Yes! I want to delete this!">
+              </form>
+          </div>
+
+      </div>
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+

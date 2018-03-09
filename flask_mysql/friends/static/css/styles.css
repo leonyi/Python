@@ -1,0 +1,89 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    max-height: 100%;
+    margin: 0px auto;
+    background: #ffffff;
+    font-family: "Century Gothic";
+}
+
+.content-wrapper {
+    max-width: 960px;
+    max-height: auto;
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+table {
+ 	text-align: left;
+ 	border: 1px solid black;
+    width: 480px;
+ 	padding: 0;
+ 	margin: 0;
+ 	border-spacing: 0;
+ 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+ }
+
+table tr:first-child th {
+	background: #CCCCCC;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 30%, #f6f6f6 30%, #e5e5e5 100%);
+	padding: 8px 10px;
+	color: #000;
+	border-top: 1px solid #cecece;
+	border-bottom: 1px solid #E6E6E6;
+ }
+
+table tr td {
+ 	background-color: #F2F2F2;
+ 	padding: 5px 10px;
+}
+
+.add_friend_form {
+    display: block;
+    padding: 10px;
+    width: 690px ;
+    margin-top 25px;
+}
+
+.submit-button {
+    margin-top: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px #000000;
+    width: 75px;
+    position: relative;
+    left: 285px;
+    font-size: small;
+}
+
+h2 {
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+p {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+label {
+    width: 400px;
+    display: block;
+}
+
+input {
+    margin-left: 15px;
+    width: 260px;
+}
+
+#age-label {
+    margin-left: 62px;
+}
+
+#fn-label, #ln-label {
+    margin-left: 14px;
+}

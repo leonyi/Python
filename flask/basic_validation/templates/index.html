@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Title</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href='../static/css/styles.css'>
+</head>
+<body>
+    <div class="content-wrapper">
+      <h1>Enter a Valid(Any) Name!</h1>
+        # The with message helps declare a variable that we can use within this scope.
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form action='/process' method='POST'>
+        Name:<input type="text" name="name">
+        <input type="submit" value="Submit">
+    </div>
+</body>
+</html>

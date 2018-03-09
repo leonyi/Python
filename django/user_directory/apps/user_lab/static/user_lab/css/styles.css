@@ -1,0 +1,145 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    max-height: 100%;
+    margin: 0px auto;
+    background: #ffffff;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    max-height: auto;
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    text-align: center;
+    background-color: #0B3C49;
+    color: white;
+    margin-bottom: 45px;
+}
+
+.header-width {
+    height: 90px;
+}
+
+.border-bottom {
+    border-bottom: solid;
+    border-bottom-color: #F6F6F6;
+}
+
+.footer {
+    margin-top: 55px;
+ 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: smaller;
+    font-style: italic;
+    border-top: solid;
+    border-top-color: #F6F6F6;
+    text-align: center;
+}
+
+h1 {
+    border-bottom: solid;
+    border-bottom-color: #F6F6F6;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+h3 {
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-left: 25px;
+}
+
+label, input {
+    display: block;
+}
+
+.p_show_user {
+    margin-bottom: 1px;
+}
+
+.show_user_section {
+    margin-top: 35px;
+}
+
+.margin-top {
+    margin-top: 50px;
+}
+.red {
+    color: #E65372;
+}
+
+.blue {
+    color: #44619D;
+}
+
+.metallic {
+    color: #0B3C49;
+}
+
+.form-attributes {
+    display: flex;
+    justify-content: flex-end;
+    width: 100px;
+    margin-right: 0px;
+    margin-left: 680px;
+    margin-bottom: 0px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+
+#msg-size {
+    width: 150px;
+    margin-top: 45px;
+}
+
+table tr:first-child th {
+	background: #CCCCCC;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 30%, #f6f6f6 30%, #e5e5e5 100%);
+	padding: 8px 10px;
+	color: #000;
+	border-top: 1px solid #cecece;
+	border-bottom: 1px solid #E6E6E6;
+    width: 770px;
+ }
+
+table tr td {
+ 	background-color: #F2F2F2;
+ 	padding: 5px 10px;
+}
+
+td {
+    text-align: left;
+}
+
+/* Classes to use with Django messaging tags
+   For more on messaging tags visit https://docs.djangoproject.com/en/1.11/ref/contrib/messages/
+*/
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.warning {
+    color: yellow;
+}
